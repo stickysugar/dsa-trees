@@ -1,3 +1,5 @@
+"use strict";
+
 /** TreeNode: node for a general tree. */
 
 class TreeNode {
