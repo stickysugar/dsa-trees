@@ -86,22 +86,21 @@ class BinaryTree {
       let current = toVisitStack.pop();
       debugger
 
-      if (!nextNum) nextNum = current.val;
+      if (!nextNum && current.val > lowerBound) nextNum = current.val;
       if (current.val > lowerBound && current.val < nextNum) {
         nextNum = current.val;
+        debugger
       }
 
-      // if (node.left) {
-      //   console.log("LEFT NODE", node.left);
-      //   debugger
-      //   toVisitStack.push(node.left);
-      // }
+      if (current.left) {
+        toVisitStack.push(current.left);
+        debugger
+      }
 
-      // if (node.right) {
-      //   console.log("RIGHT NODE", node.right);
-      //   debugger
-      //   toVisitStack.push(node.right);
-      // }
+      if (current.right) {
+        toVisitStack.push(current.right);
+        debugger
+      }
     }
 
     return nextNum;
