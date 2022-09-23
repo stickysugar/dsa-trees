@@ -1,5 +1,7 @@
 "use strict";
 
+const { Queue, QNode } = require("./queue");
+
 /** BinaryTreeNode: node for a general tree. */
 
 class BinaryTreeNode {
@@ -111,6 +113,26 @@ class BinaryTree {
    * (i.e. are at the same level but have different parents. ) */
 
   areCousins(node1, node2) {
+    if (node1 === node2 || !this.root) return false
+    let node1Depth; 
+    let node2Depth; 
+    let node1Parent; 
+    let node2Parent; 
+    let q = new Queue();
+    q.enqueue([this.root,1,null])
+
+    while (q.size) {
+      const [current,depth,parent] = q.dequeue()
+      if (current === node1) node1Depth = depth;
+      if (current === node2) node2Depth = depth;
+      if (current === node1) node1Parent = parent;
+      if (current === node2) node2Parent = parent;
+      current.left && q.enqueue([current.left,depth + 1,current])
+      current.right && q.enqueue([current.right,depth + 1,current])
+    }
+
+    return (node1Depth === node2Depth && node1Parent !== node2Parent)
+  
   }
 
 }

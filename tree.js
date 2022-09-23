@@ -73,6 +73,7 @@ class Tree {
 
     return count;
   }
+
 }
 
 module.exports = { Tree, TreeNode };
